@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CalendarApp from './CalendarApp';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CalendarApp />
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );
