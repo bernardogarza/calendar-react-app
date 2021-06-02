@@ -8,6 +8,7 @@ import { useState } from 'react';
 import CalendarModal from '../CalendarModal/CalendarModal';
 import { useDispatch } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
+import { eventSetActive } from '../../actions/events';
 
 const localizer = momentLocalizer(moment);
 
@@ -47,7 +48,7 @@ const Calendar = () => {
   };
 
   const onSelectEvent = (e) => {
-    console.log(e);
+    dispatch(eventSetActive(e));
   };
 
   const onViewChange = (e) => {
