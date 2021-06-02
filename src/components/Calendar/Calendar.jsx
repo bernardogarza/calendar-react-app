@@ -9,6 +9,7 @@ import CalendarModal from '../CalendarModal/CalendarModal';
 import { useDispatch } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
 import { eventSetActive } from '../../actions/events';
+import Fab from '../Fab/Fab';
 
 const localizer = momentLocalizer(moment);
 
@@ -25,7 +26,7 @@ const events = [
   },
 ];
 
-const eventStyleGetter = (event, start, end, isSelected) => {
+const eventStyleGetter = () => {
   const style = {
     backgroundColor: '#367CF7',
     borderRadius: '0px',
@@ -71,6 +72,7 @@ const Calendar = () => {
         view={lastView}
         onSelectEvent={onSelectEvent}
       />
+      <Fab />
       <CalendarModal />
     </div>
   );
