@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import Calendar from '../Calendar/Calendar';
-import LoginScreen from '../LoginScreen/LoginScreen';
+import Calendar from '../components/Calendar/Calendar';
+import LoginScreen from '../components/LoginScreen/LoginScreen';
 
 const AppRouter = () => {
   return (
