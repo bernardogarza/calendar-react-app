@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
+import { eventAddNew } from '../../actions/events';
 
 const customStyles = {
   content: {
@@ -83,6 +84,16 @@ const CalendarModal = () => {
     if (title.trim().length < 2) {
       return setIsTitleValid(false);
     }
+    dispatch(
+      eventAddNew({
+        ...formValues,
+        id: new Date().getTime(),
+        user: {
+          _id: '123',
+          name: 'Perfido',
+        },
+      }),
+    );
 
     setIsTitleValid(true);
     closeModal();
