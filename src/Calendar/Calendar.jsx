@@ -5,6 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarEvent from '../CalendarEvent/CalendarEvent';
 import { useState } from 'react';
+import CalendarModal from '../CalendarModal/CalendarModal';
 
 const localizer = momentLocalizer(moment);
 
@@ -65,6 +66,7 @@ const Calendar = () => {
         view={lastView}
         onSelectEvent={onSelectEvent}
       />
+      <CalendarModal />
     </div>
   );
 };
