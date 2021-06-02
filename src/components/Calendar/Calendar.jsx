@@ -6,25 +6,12 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarEvent from '../CalendarEvent/CalendarEvent';
 import { useState } from 'react';
 import CalendarModal from '../CalendarModal/CalendarModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
 import { eventSetActive } from '../../actions/events';
 import Fab from '../Fab/Fab';
 
 const localizer = momentLocalizer(moment);
-
-const events = [
-  {
-    title: 'Birthday',
-    start: moment().toDate(),
-    end: moment().add(2, 'hours').toDate(),
-    bgcolor: '#fafafa',
-    user: {
-      _id: '123',
-      name: 'Fernando',
-    },
-  },
-];
 
 const eventStyleGetter = () => {
   const style = {
@@ -43,6 +30,7 @@ const Calendar = () => {
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
 
   const dispatch = useDispatch();
+  const { events } = useSelector((state) => state.calendar);
 
   const onDoubleClick = () => {
     dispatch(uiOpenModal());
@@ -50,7 +38,6 @@ const Calendar = () => {
 
   const onSelectEvent = (e) => {
     dispatch(eventSetActive(e));
-    dispatch(uiOpenModal());
   };
 
   const onViewChange = (e) => {
