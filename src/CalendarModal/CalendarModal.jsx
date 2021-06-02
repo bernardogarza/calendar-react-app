@@ -1,6 +1,7 @@
 import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
+import { useState } from 'react';
 
 const customStyles = {
   content: {
@@ -15,13 +16,49 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const startDate = moment().minutes(0).seconds(0).add(1, 'hours');
+const now = moment().minutes(0).seconds(0).add(1, 'hours');
+const nowPlusOne = now.clone().add(1, 'hours');
 
 const CalendarModal = () => {
+  const [dateStart, setDateStart] = useState(now.toDate());
+  const [dateEnd, setDateEnd] = useState(nowPlusOne.toDate());
+  const [formValues, setFormValues] = useState({
+    title: 'Event',
+    notes: '',
+    start: now.toDate(),
+    end: nowPlusOne.toDate(),
+  });
+
+  const { title, notes } = formValues;
+
   const closeModal = () => {};
 
+  const handleInputChange = ({ target }) => {
+    setFormValues({
+      ...formValues,
+      [target.name]: target.value,
+    });
+  };
+
   const handleStartDateChange = (e) => {
-    console.log(e);
+    setDateStart(e);
+    setFormValues({
+      ...formValues,
+      start: e,
+    });
+  };
+
+  const handleEndDateChange = (e) => {
+    setDateEnd(e);
+    setFormValues({
+      ...formValues,
+      end: e,
+    });
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    console.log(formValues);
   };
 
   return (
@@ -35,19 +72,24 @@ const CalendarModal = () => {
     >
       <h1> New Event </h1>
       <hr />
-      <form className="container">
+      <form className="container" onSubmit={handleSubmitForm}>
         <div className="form-group">
           <label>Start date and time</label>
           <DateTimePicker
             onChange={handleStartDateChange}
-            value={startDate.toDate()}
+            value={dateStart}
             className="form-control"
           />
         </div>
 
         <div className="form-group">
           <label>End date and time</label>
-          <input className="form-control" placeholder="End Date" />
+          <DateTimePicker
+            onChange={handleEndDateChange}
+            value={dateEnd}
+            className="form-control"
+            minDate={dateStart}
+          />
         </div>
 
         <hr />
@@ -59,6 +101,8 @@ const CalendarModal = () => {
             placeholder="Event Title"
             name="title"
             autoComplete="off"
+            value={title}
+            onChange={handleInputChange}
           />
           <small id="emailHelp" className="form-text text-muted">
             A brief description
@@ -72,6 +116,8 @@ const CalendarModal = () => {
             placeholder="Notes"
             rows="5"
             name="notes"
+            value={notes}
+            onChange={handleInputChange}
           ></textarea>
           <small id="emailHelp" className="form-text text-muted">
             Additional info...
