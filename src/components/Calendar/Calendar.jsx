@@ -32,12 +32,9 @@ const Calendar = () => {
   const dispatch = useDispatch();
   const { events } = useSelector((state) => state.calendar);
 
-  const onDoubleClick = () => {
-    dispatch(uiOpenModal());
-  };
-
-  const onSelectEvent = (e) => {
+  const onDoubleClick = (e) => {
     dispatch(eventSetActive(e));
+    dispatch(uiOpenModal());
   };
 
   const onViewChange = (e) => {
@@ -58,7 +55,6 @@ const Calendar = () => {
         components={{ event: CalendarEvent }}
         onView={onViewChange}
         view={lastView}
-        onSelectEvent={onSelectEvent}
       />
       <Fab />
       <CalendarModal />
