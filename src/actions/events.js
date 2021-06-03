@@ -18,3 +18,7 @@ export const eventEdit = (event) => ({
   type: types.eventEdit,
   payload: event,
 });
+
+export const eventDelete = () => ({
+  type: types.eventDelete,
+});

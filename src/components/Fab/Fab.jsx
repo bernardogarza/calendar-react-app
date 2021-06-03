@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
-import { eventSetActive } from '../../actions/events';
+import { eventCleanActive } from '../../actions/events';
 import { uiOpenModal } from '../../actions/ui';
 
 const Fab = () => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(eventSetActive(null));
+    dispatch(eventCleanActive());
     dispatch(uiOpenModal());
   };
   return (

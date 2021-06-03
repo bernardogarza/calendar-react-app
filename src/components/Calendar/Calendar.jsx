@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
 import { eventSetActive } from '../../actions/events';
 import Fab from '../Fab/Fab';
+import DeleteFab from '../DeleteFab/DeleteFab';
 
 const localizer = momentLocalizer(moment);
 
@@ -30,11 +31,14 @@ const Calendar = () => {
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
 
   const dispatch = useDispatch();
-  const { events } = useSelector((state) => state.calendar);
+  const { events, activeEvent } = useSelector((state) => state.calendar);
 
-  const onDoubleClick = (e) => {
-    dispatch(eventSetActive(e));
+  const onDoubleClick = () => {
     dispatch(uiOpenModal());
+  };
+
+  const onSelectEvent = (e) => {
+    dispatch(eventSetActive(e));
   };
 
   const onViewChange = (e) => {
@@ -55,8 +59,10 @@ const Calendar = () => {
         components={{ event: CalendarEvent }}
         onView={onViewChange}
         view={lastView}
+        onSelectEvent={onSelectEvent}
       />
       <Fab />
+      {activeEvent && <DeleteFab />}
       <CalendarModal />
     </div>
   );
