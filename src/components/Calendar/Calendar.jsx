@@ -8,7 +8,7 @@ import { useState } from 'react';
 import CalendarModal from '../CalendarModal/CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
-import { eventSetActive } from '../../actions/events';
+import { eventCleanActive, eventSetActive } from '../../actions/events';
 import Fab from '../Fab/Fab';
 import DeleteFab from '../DeleteFab/DeleteFab';
 
@@ -17,10 +17,11 @@ const localizer = momentLocalizer(moment);
 const eventStyleGetter = () => {
   const style = {
     backgroundColor: '#367CF7',
-    borderRadius: '0px',
+    borderRadius: '4px',
     opacity: 0.9,
     display: 'block',
     color: 'white',
+    textAlign: 'center',
   };
   return {
     style,
@@ -46,6 +47,10 @@ const Calendar = () => {
     localStorage.setItem('lastView', e);
   };
 
+  const onSelectSlot = () => {
+    dispatch(eventCleanActive());
+  };
+
   return (
     <div className="calendar-screen">
       <Navbar />
@@ -58,6 +63,8 @@ const Calendar = () => {
         onDoubleClickEvent={onDoubleClick}
         components={{ event: CalendarEvent }}
         onView={onViewChange}
+        onSelectSlot={onSelectSlot}
+        selectable
         view={lastView}
         onSelectEvent={onSelectEvent}
       />
