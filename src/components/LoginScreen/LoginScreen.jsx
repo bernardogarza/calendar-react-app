@@ -38,7 +38,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <div>
+    <div className="login-screen">
       <div className="container login-container">
         <div className="row">
           <div className="col-md-6 login-form-1">
