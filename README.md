@@ -13,7 +13,7 @@ You can find the API repo here: https://github.com/bernardogarza/calendar-react-
 
 ## Live Demo
 
-<a href="https://calendar-app-bg.netlify.app/login" target="_blank">https://calendar-app-bg.netlify.app/login</a>
+<a href="https://calendar-app-bg.netlify.app" target="_blank">https://calendar-app-bg.netlify.app</a>
 
 <br>
 <br>
