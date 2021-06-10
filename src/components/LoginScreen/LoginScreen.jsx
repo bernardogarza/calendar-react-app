@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 import { startLogin } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
 import './LoginScreen.css';
@@ -11,11 +12,29 @@ const LoginScreen = () => {
 
   const { loginEmail, loginPassword } = formLoginValues;
 
+  const [formSignUpValues, handleSignUpInputChange] = useForm({
+    signupName: 'Rando',
+    signupEmail: 'rando@mail.com',
+    signupPassword1: '123456',
+    signupPassword2: '123456',
+  });
+
+  const { signupName, signupEmail, signupPassword1, signupPassword2 } = formSignUpValues;
+
   const dispatch = useDispatch();
 
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(startLogin(loginEmail, loginPassword));
+  };
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+
+    if (signupPassword1 !== signupPassword2) {
+      return Swal.fire('Error', "Passwords doesn't match", 'error');
+    }
+    // dispatch(startLogin(loginEmail, loginPassword));
   };
 
   return (
@@ -59,20 +78,41 @@ const LoginScreen = () => {
           <div className="col-md-6 login-form-2">
             <h3>Sign Up</h3>
 
-            <form>
+            <form onSubmit={handleSignUp}>
               <div className="form-group">
                 <label className="signup-label">Name</label>
-                <input type="text" className="form-control" placeholder="Name" />
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Name"
+                  name="signupName"
+                  value={signupName}
+                  onChange={handleSignUpInputChange}
+                />
               </div>
 
               <div className="form-group">
                 <label className="signup-label">Email</label>
-                <input type="email" className="form-control" placeholder="Email" />
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Email"
+                  name="signupEmail"
+                  value={signupEmail}
+                  onChange={handleSignUpInputChange}
+                />
               </div>
 
               <div className="form-group">
                 <label className="signup-label">Password</label>
-                <input type="password" className="form-control" placeholder="Password" />
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                  name="signupPassword1"
+                  value={signupPassword1}
+                  onChange={handleSignUpInputChange}
+                />
               </div>
 
               <div className="form-group">
@@ -81,6 +121,9 @@ const LoginScreen = () => {
                   type="password"
                   className="form-control"
                   placeholder="Password Confirmation"
+                  name="signupPassword2"
+                  value={signupPassword2}
+                  onChange={handleSignUpInputChange}
                 />
               </div>
 

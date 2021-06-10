@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { fetchWithoutToken } from '../helpers/fetch';
 import { types } from '../types/types';
 
@@ -15,6 +16,8 @@ export const startLogin = (email, password) => {
           name: body.name,
         }),
       );
+    } else {
+      Swal.fire('Error', body.msg, 'error');
     }
   };
 };
