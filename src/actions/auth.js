@@ -2,73 +2,66 @@ import Swal from 'sweetalert2';
 import { fetchWithoutToken, fetchWithToken } from '../helpers/fetch';
 import { types } from '../types/types';
 
-export const startLogin = (email, password) => {
-  return async (dispatch) => {
-    const resp = await fetchWithoutToken('auth', { email, password }, 'POST');
-    const body = await resp.json();
+export const startLogin = (email, password) => async (dispatch) => {
+  const resp = await fetchWithoutToken('auth', { email, password }, 'POST');
+  const body = await resp.json();
 
-    if (body.ok) {
-      localStorage.setItem('token', body.token);
-      localStorage.setItem('token-init-date', new Date().getTime());
-      dispatch(
-        login({
-          uid: body.uid,
-          name: body.name,
-        }),
-      );
-    } else {
-      Swal.fire('Error', body.msg, 'error');
-    }
-  };
+  if (body.ok) {
+    localStorage.setItem('token', body.token);
+    localStorage.setItem('token-init-date', new Date().getTime());
+    dispatch(
+      login({
+        uid: body.uid,
+        name: body.name,
+      }),
+    );
+  } else {
+    Swal.fire('Error', body.msg, 'error');
+  }
 };
 
-export const startSignup = (name, email, password) => {
-  return async (dispatch) => {
-    const resp = await fetchWithoutToken('auth/new', { email, password, name }, 'POST');
-    const body = await resp.json();
+export const startSignup = (name, email, password) => async (dispatch) => {
+  const resp = await fetchWithoutToken('auth/new', { email, password, name }, 'POST');
+  const body = await resp.json();
 
-    if (body.ok) {
-      localStorage.setItem('token', body.token);
-      localStorage.setItem('token-init-date', new Date().getTime());
-      dispatch(
-        login({
-          uid: body.uid,
-          name: body.name,
-        }),
-      );
-    } else {
-      showErrors(body);
-    }
-  };
+  if (body.ok) {
+    localStorage.setItem('token', body.token);
+    localStorage.setItem('token-init-date', new Date().getTime());
+    dispatch(
+      login({
+        uid: body.uid,
+        name: body.name,
+      }),
+    );
+  } else {
+    showErrors(body);
+  }
 };
 
-export const startCheking = () => {
-  return async (dispatch) => {
-    const resp = await fetchWithToken('auth/renew');
-    const body = await resp.json();
+export const startCheking = () => async (dispatch) => {
+  const resp = await fetchWithToken('auth/renew');
+  const body = await resp.json();
 
-    if (body.ok) {
-      localStorage.setItem('token', body.token);
-      localStorage.setItem('token-init-date', new Date().getTime());
+  if (body.ok) {
+    localStorage.setItem('token', body.token);
+    localStorage.setItem('token-init-date', new Date().getTime());
 
-      dispatch(
-        login({
-          uid: body.uid,
-          name: body.name,
-        }),
-      );
-    } else {
-      dispatch(checkingFinish());
-    }
-  };
+    dispatch(
+      login({
+        uid: body.uid,
+        name: body.name,
+      }),
+    );
+  } else {
+    dispatch(checkingFinish());
+  }
 };
 
-export const startLogout = () => {
-  return (dispatch, getState) => {
-    getState().calendar.activeEvent = null;
-    localStorage.clear();
-    dispatch(logout());
-  };
+export const startLogout = () => (dispatch, getState) => {
+  getState().calendar.activeEvent = null;
+  getState().calendar.events = [];
+  localStorage.clear();
+  dispatch(logout());
 };
 
 const logout = () => ({ type: types.authLogout });
