@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { startLogin } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
 import './LoginScreen.css';
 
@@ -9,9 +11,11 @@ const LoginScreen = () => {
 
   const { loginEmail, loginPassword } = formLoginValues;
 
+  const dispatch = useDispatch();
+
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(formLoginValues);
+    dispatch(startLogin(loginEmail, loginPassword));
   };
 
   return (
@@ -25,7 +29,7 @@ const LoginScreen = () => {
               <div className="form-group">
                 <label>Email</label>
                 <input
-                  type="text"
+                  type="email"
                   className="form-control"
                   placeholder="Email"
                   name="loginEmail"
@@ -73,7 +77,6 @@ const LoginScreen = () => {
 
               <div className="form-group">
                 <label className="signup-label">Password Confirmation</label>
-
                 <input
                   type="password"
                   className="form-control"
