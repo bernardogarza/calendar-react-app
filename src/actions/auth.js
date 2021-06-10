@@ -22,7 +22,33 @@ export const startLogin = (email, password) => {
   };
 };
 
+export const startSignup = (name, email, password) => {
+  return async (dispatch) => {
+    const resp = await fetchWithoutToken('auth/new', { email, password, name }, 'POST');
+    const body = await resp.json();
+
+    if (body.ok) {
+      localStorage.setItem('token', body.token);
+      localStorage.setItem('token-init-date', new Date().getTime());
+      dispatch(
+        login({
+          uid: body.uid,
+          name: body.name,
+        }),
+      );
+    } else {
+      showErrors(body);
+    }
+  };
+};
+
 const login = (user) => ({
   type: types.authLogin,
   payload: user,
 });
+
+const showErrors = (body) => {
+  const error_msg = body.errors ? Object.values(body.errors)[0].msg : body.msg;
+
+  return Swal.fire('Error', error_msg, 'error');
+};

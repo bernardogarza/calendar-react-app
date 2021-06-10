@@ -10,7 +10,7 @@ export const types = {
   authCheckingFinish: '[auth] Finish checking login state',
   authStartLogin: '[auth] Start login',
   authLogin: '[auth] Login',
-  authStartRegister: '[auth] Sign up',
+  authStartSignup: '[auth] Sign up',
   authStartTokenRenewal: '[auth] Start token renewal',
   authLogout: '[auth] Logout',
 };

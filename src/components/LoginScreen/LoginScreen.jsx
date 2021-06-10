@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-import { startLogin } from '../../actions/auth';
+import { startLogin, startSignup } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
 import './LoginScreen.css';
 
@@ -34,7 +34,7 @@ const LoginScreen = () => {
     if (signupPassword1 !== signupPassword2) {
       return Swal.fire('Error', "Passwords doesn't match", 'error');
     }
-    // dispatch(startLogin(loginEmail, loginPassword));
+    dispatch(startSignup(signupName, signupEmail, signupPassword1));
   };
 
   return (
@@ -128,7 +128,7 @@ const LoginScreen = () => {
               </div>
 
               <div className="form-group">
-                <input type="submit" className="btnSubmit" value="Crear cuenta" />
+                <input type="submit" className="btnSubmit" value="Sign Up" />
               </div>
             </form>
           </div>
