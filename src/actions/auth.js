@@ -64,7 +64,8 @@ export const startCheking = () => {
 };
 
 export const startLogout = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    getState().calendar.activeEvent = null;
     localStorage.clear();
     dispatch(logout());
   };

@@ -6,17 +6,17 @@ import './LoginScreen.css';
 
 const LoginScreen = () => {
   const [formLoginValues, handleLoginInputChange] = useForm({
-    loginEmail: 'bernardo@mail.com',
+    loginEmail: 'test@mail.com',
     loginPassword: '123456',
   });
 
   const { loginEmail, loginPassword } = formLoginValues;
 
   const [formSignUpValues, handleSignUpInputChange] = useForm({
-    signupName: 'Rando',
-    signupEmail: 'rando@mail.com',
-    signupPassword1: '123456',
-    signupPassword2: '123456',
+    signupName: '',
+    signupEmail: '',
+    signupPassword1: '',
+    signupPassword2: '',
   });
 
   const { signupName, signupEmail, signupPassword1, signupPassword2 } = formSignUpValues;
