@@ -4,11 +4,11 @@ import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import Navbar from '../Navbar/Navbar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarEvent from '../CalendarEvent/CalendarEvent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CalendarModal from '../CalendarModal/CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
-import { eventCleanActive, eventSetActive } from '../../actions/events';
+import { eventCleanActive, eventSetActive, eventStartLoading } from '../../actions/events';
 import Fab from '../Fab/Fab';
 import DeleteFab from '../DeleteFab/DeleteFab';
 
@@ -29,9 +29,14 @@ const eventStyleGetter = () => {
 };
 
 const Calendar = () => {
+  const dispatch = useDispatch();
+
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(eventStartLoading());
+  }, [dispatch]);
+
   const { events, activeEvent } = useSelector((state) => state.calendar);
 
   const onDoubleClick = () => {
