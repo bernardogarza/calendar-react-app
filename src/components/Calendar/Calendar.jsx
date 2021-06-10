@@ -14,20 +14,6 @@ import DeleteFab from '../DeleteFab/DeleteFab';
 
 const localizer = momentLocalizer(moment);
 
-const eventStyleGetter = () => {
-  const style = {
-    backgroundColor: '#367CF7',
-    borderRadius: '4px',
-    opacity: 0.9,
-    display: 'block',
-    color: 'white',
-    textAlign: 'center',
-  };
-  return {
-    style,
-  };
-};
-
 const Calendar = () => {
   const dispatch = useDispatch();
 
@@ -38,6 +24,7 @@ const Calendar = () => {
   }, [dispatch]);
 
   const { events, activeEvent } = useSelector((state) => state.calendar);
+  const { uid } = useSelector((state) => state.auth);
 
   const onDoubleClick = () => {
     dispatch(uiOpenModal());
@@ -54,6 +41,20 @@ const Calendar = () => {
 
   const onSelectSlot = () => {
     dispatch(eventCleanActive());
+  };
+
+  const eventStyleGetter = (event) => {
+    const style = {
+      backgroundColor: '#367CF7',
+      borderRadius: '4px',
+      opacity: 0.9,
+      display: uid === event.user._id ? 'block' : 'none',
+      color: 'white',
+      textAlign: 'center',
+    };
+    return {
+      style,
+    };
   };
 
   return (
