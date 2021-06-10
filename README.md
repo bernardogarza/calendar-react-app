@@ -1,6 +1,41 @@
-# Getting Started with Create React App
+# Calendar React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This is the front end of a MERN app, for this project I used the `big calendar` library and implemented Redux Thunk.
+It's a simple calendar app where you can create, edit and delete events. You need to create a user in order to use the app or use the default
+credentials that are already on the login within the app. This app is only for educational purposes.
+
+You can find the API repo here: https://github.com/bernardogarza/calendar-react-api
+
+## Author
+
+**[Bernardo Garza Landa](https://bernardogarza.me/)** - bernardo.g.landa@gmail.com - [Portfolio](https://bernardogarza.me) - [LinkedIn](https://www.linkedin.com/in/bernardo-g-landa/)
+
+## Live Demo
+
+<a href="https://calendar-app-bg.netlify.app/login" target="_blank">https://calendar-app-bg.netlify.app/login</a>
+
+<br>
+<br>
+
+<h1 align="center">Screenshots</h1>
+
+<p align="center">
+  <img src="./screenshots/calendar01.png" alt="Calendar Month" >
+</p>
+<p align="center">
+  <img src="./screenshots/calendar02.png" alt="Calendar Week" >
+</p>
+<p align="center">
+  <img src="./screenshots/calendar03.png" alt="Calendar Day" >
+</p>
+<p align="center">
+  <img src="./screenshots/calendar04.png" alt="Calendar Agenda" >
+</p>
+
+
+<br>
+<br>
 
 ## Available Scripts
 
@@ -13,58 +48,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
