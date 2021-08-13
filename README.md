@@ -13,7 +13,7 @@ You can find the API repo here: https://github.com/bernardogarza/calendar-react-
 
 ## Live Demo
 
-<a href="https://calendar-app-bg.netlify.app" target="_blank">https://calendar-app-bg.netlify.app</a> (Tt might take a few seconds and a refresh to load becuase the server is hosted on Heroku and on the free version, the server goes to sleep after 30 mins of inactivity)
+<a href="https://calendar-app-bg.netlify.app" target="_blank">https://calendar-app-bg.netlify.app</a> (It might take a few seconds and a refresh to load becuase the server is hosted on Heroku and on the free version, the server goes to sleep after 30 mins of inactivity)
 
 <br>
 <br>
